@@ -1,0 +1,27 @@
+{
+	"index.html": {
+		"resources": [
+			"lib/css/ionic.min.css",
+			"js/app.js",
+			"project/city/cityCtrl.js",
+			"project/price/priceCtrl.js",
+			"project/entrust/entrust.html",
+			"project/myself/myself.html",
+			"lib/js/ionic.bundle.js",
+			"project/collection/collectionCtrl.js",
+			"project/collection/collection.html",
+			"project/find/find.html",
+			"project/home/homeCtrl.js",
+			"css/index.css",
+			"project/sale/saleCtrl.js",
+			"project/data/data.js",
+			"js/ionic-toast.bundle.min.js",
+			"project/knockdown/knockdownCtrl.js",
+			"project/myself/myselfCtrl.js",
+			"project/find/findCtrl.js",
+			"project/entrust/entrustCtrl.js",
+			"css/city.css",
+			"project/container/containerCtrl.js"
+		]
+	}
+}

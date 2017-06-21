@@ -1,0 +1,117 @@
+<ion-view id="m_city" view-title="市场详情" ng-controller="homeCtrl">
+    <div class="buttons">
+        <button class="button">右侧按钮</button>
+    </div>
+    <ion-side-menus>
+        <ion-side-menu side="left" id="find_left">
+            <div class="list">
+                <a class="item item-icon-left dark-myself" href="javascript:;">
+                   <h1 style="color:#f0f0f0">我是侧边栏</h1>
+                </a>
+                <a class="item item-icon-left dark-myself" href="javascript:;">
+                    <i class="icon ion-email"></i>
+                    新手指导
+                </a>
+                <a class="item item-icon-left dark-myself" href="javascript:;">
+                    <i class="icon ion-chatbubble-working"></i>
+                    免责声明
+                </a>
+                <a class="item item-icon-left dark-myself" href="javascript:;">
+                    <i class="icon ion-mic-a"></i>
+                    联系我们
+                </a>
+                <a class="item item-icon-left dark-myself" href="javascript:;">
+                    <i class="icon ion-person-stalker"></i>
+                    关于
+                </a>
+            </div>
+        </ion-side-menu>
+        <ion-side-menu-content>
+            <ion-header-bar class="item-input-inset m_bg">
+                <button class="button button-icon ion-ios-drag m_color">
+                </button>
+                <h1 class="title" style="color:#fff">市场行情</h1>
+                <button class="button button-icon ion-ios-search m_color" ui-sref="tabs.sale"></button>
+                <button class="button button-icon ion-ios-reload m_color" ng-click="show()"></button>
+            </ion-header-bar>
+            <ion-content>
+                <ul class="row my_goods dark-myself" style="text-align: center">
+                   <li class="col-50" ng-repeat="items in list" ng-class="{choose:$index==selected}" ng-click="changeList($index)">{{items}}</li>
+                </ul>
+                <div class="info" ng-if="tabOne">
+                    <div class="card" style="border-radius: 0;margin: 0;">
+                        <div class="item item-text-wrap img_lineheight" ng-repeat="items in info" style="border-radius: 0">
+                            <div class="click_content" ng-click="showThis=!showThis">
+                                <div class="row">
+                                    <p class="choose_item col-50">代码:{{items.code}}</p>
+                                    <p class="choose_item col-50">商品:{{items.goods}}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="choose_item col-33" style="font-size: 12px;">涨跌:<span ng-class="{true:'add',false:'fall'}[addNum(items.much)]">{{items.much}}</span></p>
+                                    <p class="choose_item col-33">售价:<span ng-class="{true:'add',false:'fall'}[addNum(items.much)]">{{items.price}}</span></p>
+                                    <p class="choose_item col-33 sold">售量:{{items.num}}</p>
+                                </div>
+                            </div>
+                            <div ng-if="showThis">
+                                <p class="row">成交额:{{items.volume}}</p>
+                                <div class="row">
+                                    <p class="col-50">首笔价:{{items.first}}</p>
+                                    <p class="col-50">昨收盘:{{items.past}}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-50">最高价:{{items.maxNum}}</p>
+                                    <p class="col-50">最低价:{{items.minNum}}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-50">成交量:{{items.successNum}}</p>
+                                    <p class="col-50">库存量:{{items.store}}</p>
+                                </div>
+                                <div class="row">
+                                    <button class="button button-assertive col-40" style="margin: 0 5%" ng-click="toPrice(items.tokenId,items)">价格走势</button>
+                                    <button class="button button-balanced col-40" ng-click="toBuy(items.tokenId,items)">摘牌买入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--我的自选页面-->
+                <div class="info" ng-if="tabTwo">
+                    <div class="card" style="border-radius: 0;margin: 0;">
+                        <div class="item item-text-wrap" ng-repeat="items in like" style="border-radius: 0">
+                            <div class="click_content" ng-click="showThis=!showThis">
+                                <div class="row">
+                                    <p class="choose_item col-50">代码:{{items.code}}</p>
+                                    <p class="choose_item col-50">商品:{{items.goods}}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="choose_item col-33" style="font-size: 12px">涨跌:<span ng-class="{true:'add',false:'fall'}[addNum(items.much)]">{{items.much}}</span></p>
+                                    <p class="choose_item col-33">售价:<span ng-class="{true:'add',false:'fall'}[addNum(items.much)]">{{items.price}}</span></p>
+                                    <p class="choose_item col-33 sold">售量:{{items.num}}</p>
+                                </div>
+                            </div>
+                            <div ng-if="showThis">
+                                <p class="row">成交额:{{items.volume}}</p>
+                                <div class="row">
+                                    <p class="col-50">首笔价:{{items.first}}</p>
+                                    <p class="col-50">昨收盘:{{items.past}}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-50">最高价:{{items.maxNum}}</p>
+                                    <p class="col-50">最低价:{{items.minNum}}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-50">成交量:{{items.successNum}}</p>
+                                    <p class="col-50">库存量:{{items.store}}</p>
+                                </div>
+                                <div class="row">
+                                    <button class="button button-assertive col-40" style="margin: 0 5%" ng-click="toPrice(items.tokenId,items)">价格走势</button>
+                                    <button class="button button-balanced col-40" ui-sref="tabs.sale">摘牌买入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-side-menu-content>
+    </ion-side-menus>
+</ion-view>

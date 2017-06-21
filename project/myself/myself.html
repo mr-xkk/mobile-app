@@ -1,0 +1,18 @@
+<ion-view id="m_city" view-title="开户" ng-controller="myselfCtrl">
+    <ion-nav-bar class="bar-balanced">
+        <ion-nav-back-button class="m_color"></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content>
+		 <div class="list list-inset">  
+            <label class="item item-input">  
+                <i class="icon ion-person"></i>  
+                <input type="text" placeholder="请输入账号" ng-model="account" id="acc">
+            </label>  
+            <label class="item item-input">  
+                <i class="icon ion-locked"></i>  
+                <input type="password" placeholder="请输入密码" ng-model="pass" id="pass">
+            </label>
+        </div>
+        <button class="button button-full" style="background-color: black;color: #fff" ng-click="subMit(account,pass)">登陆</button>
+    </ion-content>
+</ion-view>

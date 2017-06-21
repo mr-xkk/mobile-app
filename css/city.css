@@ -1,0 +1,25 @@
+.kXian li{
+	width: 14.27%;
+	float: left;
+	text-align: center;
+    height: 30px;
+    line-height: 30px;
+	border: 1px solid #A9A9A9;
+}
+.kXian{
+	color: #A9A9A9;
+	margin:0 auto;
+}
+.k_active{
+	color: #f0f0f0;
+	border: 1px solid #4d4d4d;
+	background: #4d4d4d;
+}
+.clearfix:after{
+	content:'200B';
+	clear: both;
+	display:block;
+	height:0;
+	font-size:0;
+	*zoom:1;
+}

@@ -1,0 +1,55 @@
+<ion-view id="m_city" view-title='产品详情' ng-controller="cityCtrl">
+    <ion-nav-bar class="bar-balanced">
+        <ion-nav-back-button class="m_color"></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content on-swipe-left="onSwipeLeft($event);"  on-swipe-right="onSwipeRight($event);">
+        <ul class="row" id="e_tabs">
+            <li class="col-33" ng-repeat="item in elist" ng-class="{toclick:$index==selected}" ng-click="cut($index)">
+                {{item}}
+            </li>
+        </ul>
+        <div class="row" id="data_cloud">
+            <div class="new_data col-50"><span ng-class="{true:'add',false:'fall'}[comNum()]">{{newNum}}</span></div>
+            <div class="row">
+                <p class="col-50 sml_data">最高:<span ng-class="{true:'add',false:'fall'}[comNum()]">{{maxNum}}</span><br>今开:{{minNum}}</p>
+                <p class="col-50 sml_data">最低{{minNum}}<br>昨收:{{newNum}}</p>
+            </div>
+        </div>
+        <ul class="row" id="data_buy">
+            <li ng-repeat="val in goodsInfo" class="col-33" style="background: #a2a2a2" ng-click="addAlert(val.tokenId,val)" ng-if="addSuc">
+                加入自选
+            </li>
+            <li class="col-33" style="background: #a2a2a2" ng-click="removeAlert()" ng-if="removeSuc">
+                删除自选
+            </li>
+            <li class="col-33" style="background: #ef473a" ui-sref="tabs.price">
+                买入
+            </li>
+            <li class="col-33" style="background: #33cd5f" ui-sref="tabs.price">
+                卖出
+            </li>
+        </ul>
+        <!-- ECharts Dom -->
+        <div id="contain" style="width: 100%;height:400px;" class="the_pic" ng-show="page1"></div>
+        <div class="k_cloud" ng-show="page2">
+            <ul class="kXian clearfix" id="kXian">
+              <li ng-click="getMes('kline_1d')" class="k_active">日K</li>
+              <li ng-click="getMes('kline_1w')">周K</li>
+              <li ng-click="getMes('kline_1m')">月K</li>
+              <li ng-click="getMes('kline_5m')">5分</li>
+              <li ng-click="getMes('kline_15m')">15分</li>
+              <li ng-click="getMes('kline_30m')">30分</li>
+              <li ng-click="getMes('kline_1h')">60分</li>
+            </ul>
+            <div id="main" style="width: 100%;height:400px;" class="the_pic"></div>
+        </div>
+        <div ng-if="page3">
+            <ul class="row" style="text-align: center;color: #f0f0f0">
+                <li ng-repeat="deal in deals track by $index" class="col-25">
+                    {{deal}}
+                </li>
+            </ul>
+        </div>
+    </ion-content>
+</ion-view>
+

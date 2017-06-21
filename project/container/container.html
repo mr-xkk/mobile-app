@@ -1,0 +1,29 @@
+<ion-view id="m_city" view-title='持仓明细' ng-controller="containerCtrl">
+    <ion-nav-bar class="bar-balanced">
+        <ion-nav-back-button class="m_color">查询</ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content scroll="false">
+        <ion-content class="get_back"  style="color:#f0f0f0">
+            <ion-refresher
+                    pulling-text="下拉刷新..."
+                    on-refresh="doRefresh()">
+            </ion-refresher>
+            <div style="float: left; width:20%;text-align: center;">商品名称</div>
+            <div style="float:left;width: 5%">
+                &nbsp;&lt;
+            </div>
+            <div style="float:left; width:70%">
+                <ion-scroll has-bouncing="false" style="width:100%;" direction="x" scrollbar-x="false">
+                    <div style="width:400px;">
+                        <div style="float: left;margin:0 25px;" ng-repeat="buy_item in con_list">
+                            {{buy_item}}
+                        </div>
+                    </div>
+                </ion-scroll>
+            </div>
+            <div style="float:left;width: 5%">
+                &nbsp;&gt;
+            </div>
+        </ion-content>
+    </ion-content>
+</ion-view>

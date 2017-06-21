@@ -1,0 +1,35 @@
+<ion-view view-title="我的收藏" id="collection_nav" ng-controller="collectionCtrl">
+    <ion-nav-bar class="bar-balanced">
+        <ion-nav-back-button class="m_color"></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content class="has-header">
+    <div class="list" ng-repeat="address in data">
+    <a class="item item-avatar" href="javascript:;">
+        <img src="images/photo_03.jpg">
+        <h2>Procrastination</h2>
+        <p>一个美好的选择恐惧症患者.</p>
+    </a>
+    <a class="item item-icon-left" href="javascript:;">
+        <i class="icon ion-planet"></i>
+        房屋地址:{{address.province}}
+    </a>
+    <a class="item item-icon-left" href="javascript:;">
+        <i class="icon ion-ios-information-outline"></i>
+        小区名称:{{address.add}}
+    </a>
+
+    <a class="item item-icon-left" href="javascript:;">
+        <i class="icon ion-heart"></i>
+        价格:{{address.price}}
+    </a>
+    <a class="item item-icon-left" href="javascript:;">
+        <i class="icon ion-pricetags"></i>
+        {{address.introduce}}
+    </a>
+    <a class="item item-icon-left" href="javascript:;">
+        <img src="{{address.imgsrc}}">
+    </a>
+</div>
+    </ion-content>
+
+</ion-view>

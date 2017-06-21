@@ -1,0 +1,194 @@
+<ion-view id="m_city" view-title="交易" ng-controller="priceCtrl">
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title" style="color:#fff">交易</h1>
+    </ion-header-bar>
+    <ion-content scroll="false">
+        <ul class="row">
+            <li class="col-25 buy_list" ng-repeat="adata in buyList" ng-class="{choose_b:$index==selected}" ng-click="changeList($index)">
+                {{adata}}
+            </li>
+       </ul>
+        <ion-content style="margin-top: 31px;color:#f0f0f0" scroll="false">
+            <ion-scroll direction="y" ng-if="ent" class="entrust scroll-content">
+                <ul class="row">
+                    <li class="col-25 buy_list" ng-repeat="assets in asset">
+                        {{assets}}
+                    </li>
+                </ul>
+                <ul class="row">
+                    <li class="col-25 buy_list asset_list" ng-repeat="assetsval in assetVal">
+                        {{assetsval}}
+                    </li>
+                </ul>
+                <!--数据区-->
+                <div class="row asset_data">
+                    <div class="col-50">
+                        <div class="row">
+                            <span class="col-33">买一:</span>
+                            <span class="col-33">2.77</span>
+                            <span class="col-33">200</span>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <div class="row">
+                            <span class="col-33">买一:</span>
+                            <span class="col-33">2.77</span>
+                            <span class="col-33">200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row asset_data">
+                    <div class="col-50">
+                        <div class="row">
+                            <span class="col-33">买一:</span>
+                            <span class="col-33">2.77</span>
+                            <span class="col-33">200</span>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <div class="row">
+                            <span class="col-33">买一:</span>
+                            <span class="col-33">2.77</span>
+                            <span class="col-33">200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row asset_data">
+                    <div class="col-50">
+                        <div class="row">
+                            <span class="col-33">买一:</span>
+                            <span class="col-33">2.77</span>
+                            <span class="col-33">200</span>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <div class="row">
+                            <span class="col-33">买一:</span>
+                            <span class="col-33">2.77</span>
+                            <span class="col-33">200</span>
+                        </div>
+                    </div>
+                </div>
+                <!--委托操作区-->
+                <div class="goods_detail" ng-repeat="goods in goods">
+                    <div class="row goods_code">
+                        <span class="col-25 text_mid">商品代码 :</span>
+                        <p class="col-50 has_border">{{goods.goods}}</p>
+                        <p class="col-25 text_mid" style="font-size: 24px" ui-sref="tabs.search"><i class="ion-ios-search"></i></p>
+                    </div>
+                    <div class="row goods_code">
+                        <span class="col-25 text_mid">价格 :</span>
+                        <div class="col-50 row" style="margin-top: -10px">
+                            <button type="button" class="button button-outline button-dark button_set col-25" ng-click="cutP()">-</button>
+                            <input type="number" placeholder="市价" class="text_mid input_set col-50" ng-model="addPrice">
+                            <button type="button" class="button button-outline button-dark button_set col-25" ng-click="addP()">+</button>
+                        </div>
+                        <p class="col-25 text_mid">市价</p>
+                    </div>
+                    <div class="row goods_code">
+                        <span class="col-25 text_mid">数量 :</span>
+                        <div class="col-50 row" style="margin-top: -10px">
+                            <button type="button" class="button button-outline button-dark button_set col-25" ng-click="cut()">-</button>
+                            <input type="number" ng-model="addNum" class="text_mid input_set col-50" placeholder="数量">
+                            <button type="button" class="button button-outline button-dark button_set col-25" ng-click="add()">+</button>
+                        </div>
+                        <p class="col-25 text_mid">可买<span>0</span></p>
+                    </div>
+                    <div class="row goods_code">
+                        <span class="col-25 text_mid">买卖 :</span>
+                        <div class="col-75">
+                            <div class="row">
+                                <button class="button button-small button-outline button-positive col-50" style="margin: 0 2% 0 -2%">
+                                    买
+                                </button>
+                                <button class="button button-small button-outline button-positive col-50">
+                                    卖
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button button-block button-positive" ng-click="toBuy()">
+                        下单
+                    </button>
+                </div>
+            </ion-scroll>
+        </ion-content>
+        <ion-content class="get_back" ng-show="getb" style="margin-top: 31px;color:#f0f0f0">
+            <ion-refresher
+                    pulling-text="下拉刷新..."
+                    on-refresh="doRefresh()">
+            </ion-refresher>
+            <div style="float: left; width:20%;text-align: center;">商品名称</div>
+            <div style="float:left;width: 5%">
+                &nbsp;&lt;
+            </div>
+            <div style="float:left; width:70%">
+                <ion-scroll has-bouncing="false" style="width:100%;" direction="x" scrollbar-x="false">
+                <div style="width:500px;">
+                    <div style="float: left;margin:0 12px;"  ng-repeat="get_item in getb_list">
+                        {{get_item}}
+                    </div>
+                </div>
+            </ion-scroll>
+            </div>
+            <div style="float:left;width: 5%">
+                &nbsp;&gt;
+            </div>
+        </ion-content>
+        <ion-content class="position clearfix" ng-show="pos" style="margin-top: 31px;color:#f0f0f0" ng-repeat="g_item in goods_name">
+            <ion-refresher
+                    pulling-text="下拉刷新..."
+                    on-refresh="doRefresh()">
+            </ion-refresher>
+            <div style="float: left; width:20%;text-align: center;">
+                商品名称
+                <p>{{g_item.name}}</p>
+            </div>
+            <div style="float:left;width: 5%">
+                &nbsp;&lt;
+            </div>
+            <div style="float:left; width:70%">
+                <ion-scroll has-bouncing="false" style="width:100%;" direction="x" scrollbar-x="false">
+                    <div style="width:600px;">
+                        <div style="float: left;margin:0 12px;" ng-repeat="p_item in pos_list">
+                            {{p_item}}
+                        </div>
+                        <div style="float: left;margin:0 5px;width:100%"  ng-repeat="gi_item in goods_name">
+                            <p class="code_title">{{gi_item.nums}}</p>
+                            <p class="code_title">{{gi_item.price}}</p>
+                            <p class="code_title">{{gi_item.jun}}</p>
+                            <p class="code_title">{{gi_item.dai}}</p>
+                            <p class="code_title">{{gi_item.yin}}</p>
+                            <p class="code_title">{{gi_item.chi}}</p>
+                            <p class="code_title">{{gi_item.shi}}</p>
+                            <p class="code_title">{{gi_item.code}}</p>
+                        </div>
+                    </div>
+                </ion-scroll>
+            </div>
+            <div style="float:left;width: 5%">
+                &nbsp;&gt;
+            </div>
+        </ion-content>
+        <div class="query" ng-if="que">
+            <div class="list">
+                <a class="item item-icon-right dark-myself" ui-sref="tabs.knockdown" href="javascript:;">
+                    查成交
+                    <i class="icon ion-ios-arrow-right"></i>
+                </a>
+                <a class="item item-icon-right dark-myself" href="javascript:;" ui-sref="tabs.entrust">
+                    查委托
+                    <i class="icon ion-ios-arrow-right"></i>
+                </a>
+                <a class="item item-icon-right dark-myself" href="javascript:;" ui-sref="tabs.fund">
+                    查资金
+                    <i class="icon ion-ios-arrow-right"></i>
+                </a>
+                <a class="item item-icon-right dark-myself" href="javascript:;" ui-sref="tabs.container">
+                    持仓明细
+                    <i class="icon ion-ios-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
